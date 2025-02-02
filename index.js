@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');
 const routes = require('./routes/product.route.js');
 require('dotenv').config();
+const bodyParse = require('body-parser');
+const authRoutes = require('./routes/auth');
 
 
 
@@ -12,6 +14,12 @@ require('dotenv').config();
 app.use(express.json());
 
 app.use('/api/products', routes);
+
+app.use('/api/auth', authRoutes);
+
+app.use(bodyParse.urlencoded({
+  extended: true
+}))
 
 
 
