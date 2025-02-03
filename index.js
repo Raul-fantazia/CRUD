@@ -19,7 +19,7 @@ app.use(bodyParse.urlencoded({
   extended: true
 }))
 
-
+app.use(express.static('public'));
 
 
 app.use('/api/products', routes);

@@ -6,20 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-
-    <script src="script.js"></script> 
-
-    <form id ="Form" action="http://localhost:3000/api/auth/login" method="post">
+    
+    <form id ="Form-register" action="http://localhost:3000/api/auth/register" method="post">
+        <label for="nome">Nome: <input type="text" name="nome" id="nome"></label><br><br>
         <label for="email"> Email :<input type="email" name="email" id="email"></label><br><br>
         <label for="password">Senha : <input type="text" name="password" id="password"> </label><br><br>
-        <button type="submit">Login</button>
+        <button type="submit">Criar conta</button>
     </form><br>
 
-    <p>
-        Não tem uma conta? <a href="register.html">Crie sua conta</a>
-        
-
-    </p>
-
+    <script src="script.js"></script>
 </body>
 </html>

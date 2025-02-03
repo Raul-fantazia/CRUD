@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/user.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -27,7 +27,8 @@ const login = async (req,res) => {
         //token awt
         const token = jwt.sign({ userId: user._id }, 'suaChaveSecreta', { expiresIn: '1h' });
 
-        res.send('Login efetuado com sucesso seu arrombado');
+        res.status(302).redirect('/menu.html');
+        
     }
         catch(error) {
             console.error(error);
@@ -40,10 +41,10 @@ const login = async (req,res) => {
 // para se cadastrar
 const register = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { nome, email, password } = req.body;
 
         // nome do usuario
-        if (!name || name.trim() === "") {
+        if (!nome || nome.trim() === "") {
             return res.status(400).json({ message: "O campo name é obrigatório." });
         }
 
@@ -66,7 +67,7 @@ const register = async (req, res) => {
 
         // Criação do novo usuário
         const newUser = new User({
-            name,
+            nome,
             email,
             password: hashedPassword,
              
@@ -74,7 +75,8 @@ const register = async (req, res) => {
 
         await newUser.save();
 
-        res.status(201).json({ message: 'Usuário cadastrado com sucesso' });
+        res.status(302).redirect('/index.html');
+        
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Erro ao cadastrar usuário' });
