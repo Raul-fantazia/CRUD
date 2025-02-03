@@ -7,19 +7,25 @@ const routes = require('./routes/product.route.js');
 require('dotenv').config();
 const bodyParse = require('body-parser');
 const authRoutes = require('./routes/auth');
+const bcrypt = require('bcrypt');
 
 
 
 // middlewares
 app.use(express.json());
 
+//para formularios
+app.use(bodyParse.urlencoded({
+  extended: true
+}))
+
+
+
+
 app.use('/api/products', routes);
 
 app.use('/api/auth', authRoutes);
 
-app.use(bodyParse.urlencoded({
-  extended: true
-}))
 
 
 
